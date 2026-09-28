@@ -88,20 +88,42 @@ const productGallery = document.querySelector('[data-product-gallery]');
 if (productGallery) {
     const images = [...productGallery.querySelectorAll('[data-gallery-image]')];
     const dots = [...productGallery.querySelectorAll('[data-gallery-dot]')];
+    const productName = productGallery.querySelector('.product-feature-copy [data-product-name]');
+    const productDetail = productGallery.querySelector('.product-feature-copy [data-product-detail]');
+    const productLink = productGallery.querySelector('[data-product-link]');
+    const productCurrent = productGallery.querySelector('[data-product-current]');
+    const pauseButton = productGallery.querySelector('[data-gallery-pause]');
     const savedIndex = Number.parseInt(safeSessionStorage.get('fujiSeat.productGalleryIndex') ?? '0', 10);
     let index = Number.isInteger(savedIndex) && savedIndex >= 0 && savedIndex < images.length ? savedIndex : 0;
     let timer;
+    let isPaused = false;
 
     const showProduct = (nextIndex) => {
         index = ((nextIndex % images.length) + images.length) % images.length;
         images.forEach((item, itemIndex) => item.classList.toggle('is-active', itemIndex === index));
-        dots.forEach((item, itemIndex) => item.classList.toggle('is-active', itemIndex === index));
+        dots.forEach((item, itemIndex) => {
+            const isActive = itemIndex === index;
+            item.classList.toggle('is-active', isActive);
+            item.setAttribute('aria-pressed', String(isActive));
+        });
+        if (productName) {
+            productName.textContent = images[index].dataset.productName;
+        }
+        if (productDetail) {
+            productDetail.textContent = images[index].dataset.productDetail;
+        }
+        if (productLink) {
+            productLink.setAttribute('href', '#product-' + (index + 1));
+        }
+        if (productCurrent) {
+            productCurrent.textContent = String(index + 1).padStart(2, '0');
+        }
         safeSessionStorage.set('fujiSeat.productGalleryIndex', index);
     };
 
     const startTimer = () => {
         clearInterval(timer);
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (!isPaused && !productGallery.matches(':hover') && !productGallery.contains(document.activeElement) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             timer = setInterval(() => showProduct(index + 1), 5000);
         }
     };
@@ -111,6 +133,15 @@ if (productGallery) {
     dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => { showProduct(dotIndex); startTimer(); }));
     productGallery.addEventListener('mouseenter', () => clearInterval(timer));
     productGallery.addEventListener('mouseleave', startTimer);
+    productGallery.addEventListener('focusin', () => clearInterval(timer));
+    productGallery.addEventListener('focusout', () => requestAnimationFrame(startTimer));
+    pauseButton?.addEventListener('click', () => {
+        isPaused = !isPaused;
+        pauseButton.textContent = isPaused ? 'Resume' : 'Pause';
+        pauseButton.setAttribute('aria-pressed', String(isPaused));
+        pauseButton.setAttribute('aria-label', isPaused ? 'Resume automatic product slideshow' : 'Pause automatic product slideshow');
+        startTimer();
+    });
     showProduct(index);
     startTimer();
 }
