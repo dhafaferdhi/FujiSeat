@@ -30,21 +30,40 @@ if (menuButton && mainNav) {
 
 const slider = document.querySelector('[data-slider]');
 
+const safeSessionStorage = {
+    get(key) {
+        try {
+            return window.sessionStorage.getItem(key);
+        } catch {
+            return null;
+        }
+    },
+    set(key, value) {
+        try {
+            window.sessionStorage.setItem(key, String(value));
+        } catch {
+            // Ignore storage failures in private browsing or restricted environments.
+        }
+    },
+};
+
 if (slider) {
     const slides = [...slider.querySelectorAll('[data-slide]')];
     const dots = [...slider.querySelectorAll('[data-dot]')];
     const current = slider.querySelector('[data-current]');
-    let index = 0;
+    const savedIndex = Number.parseInt(safeSessionStorage.get('fujiSeat.sliderIndex') ?? '0', 10);
+    let index = Number.isInteger(savedIndex) && savedIndex >= 0 && savedIndex < slides.length ? savedIndex : 0;
     let timer;
 
     const showSlide = (nextIndex) => {
-        index = (nextIndex + slides.length) % slides.length;
+        index = ((nextIndex % slides.length) + slides.length) % slides.length;
         slides.forEach((slide, slideIndex) => {
             const active = slideIndex === index;
             slide.classList.toggle('is-active', active);
             slide.setAttribute('aria-hidden', String(!active));
         });
         dots.forEach((dot, dotIndex) => dot.classList.toggle('is-active', dotIndex === index));
+        safeSessionStorage.set('fujiSeat.sliderIndex', index);
         if (current) current.textContent = String(index + 1).padStart(2, '0');
     };
 
@@ -60,6 +79,7 @@ if (slider) {
     dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => { showSlide(dotIndex); startTimer(); }));
     slider.addEventListener('mouseenter', () => clearInterval(timer));
     slider.addEventListener('mouseleave', startTimer);
+    showSlide(index);
     startTimer();
 }
 
@@ -68,13 +88,15 @@ const productGallery = document.querySelector('[data-product-gallery]');
 if (productGallery) {
     const images = [...productGallery.querySelectorAll('[data-gallery-image]')];
     const dots = [...productGallery.querySelectorAll('[data-gallery-dot]')];
-    let index = 0;
+    const savedIndex = Number.parseInt(safeSessionStorage.get('fujiSeat.productGalleryIndex') ?? '0', 10);
+    let index = Number.isInteger(savedIndex) && savedIndex >= 0 && savedIndex < images.length ? savedIndex : 0;
     let timer;
 
     const showProduct = (nextIndex) => {
-        index = (nextIndex + images.length) % images.length;
+        index = ((nextIndex % images.length) + images.length) % images.length;
         images.forEach((item, itemIndex) => item.classList.toggle('is-active', itemIndex === index));
         dots.forEach((item, itemIndex) => item.classList.toggle('is-active', itemIndex === index));
+        safeSessionStorage.set('fujiSeat.productGalleryIndex', index);
     };
 
     const startTimer = () => {
@@ -89,5 +111,6 @@ if (productGallery) {
     dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => { showProduct(dotIndex); startTimer(); }));
     productGallery.addEventListener('mouseenter', () => clearInterval(timer));
     productGallery.addEventListener('mouseleave', startTimer);
+    showProduct(index);
     startTimer();
 }

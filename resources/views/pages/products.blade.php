@@ -21,12 +21,11 @@
     <section class="product-list-section">
         <div class="container product-grid">
             @foreach (config('site.products') as $product)
-                <article class="product-card">
+                <article class="product-card" id="product-{{ $loop->iteration }}">
                     <div class="product-image"><img src="{{ asset('assets/images/'.$product['image']) }}" alt="{{ $product['name'] }} car seats" loading="lazy"></div>
                     <div class="product-body"><h2>{{ $product['name'] }}</h2><p>{{ $product['detail'] }}</p></div>
                 </article>
             @endforeach
         </div>
     </section>
-    <div class="product-spacer" aria-hidden="true"></div>
 @endsection

@@ -4,18 +4,21 @@
 
 @section('content')
     <section class="about-hero">
-        <div class="container">
-            <h1>About Us</h1>
-            <p>{{ config('site.description') }}</p>
-            <h2>Philosophy</h2>
-            <p>As a member of the Daihatsu Group, PT. FUJI SEAT INDONESIA strives to earn the admiration of people worldwide through the development and manufacture of seats and interior accessories for innovative vehicles.</p>
+        <div class="container about-grid">
+            <div>
+                <h1>About Us</h1>
+                <p>{{ config('site.description') }}</p>
+                <h2>Philosophy</h2>
+                <p>As a member of the Daihatsu Group, PT. FUJI SEAT INDONESIA strives to earn the admiration of people worldwide through the development and manufacture of seats and interior accessories for innovative vehicles.</p>
+            </div>
+            <figure class="about-image"><img src="{{ asset('assets/images/about.jpg') }}" alt="Compass on a world map" width="1400" height="900"></figure>
         </div>
     </section>
     <section class="policy-section">
         <div class="container">
             <h2 class="centered-heading">Basic Policy</h2>
             <div class="policy-grid">
-                <img src="{{ asset('assets/images/hero-kiic.jpg') }}" alt="Fuji Seat Indonesia Karawang plant" loading="lazy">
+                <figure class="policy-image"><img src="{{ asset('assets/images/hero-kiic.jpg') }}" alt="Fuji Seat Indonesia Karawang plant" width="1400" height="827" loading="lazy"></figure>
                 <div class="policy-cards">
                     <article><h3>Satisfy Customer</h3><p>We strive to satisfy customer who love their Daihatsu vehicles.</p></article>
                     <article><h3>Our Business</h3><p>We structure our business around activities conceived to earn consumer trust.</p></article>
