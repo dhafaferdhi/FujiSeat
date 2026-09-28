@@ -5,10 +5,10 @@ return [
     'tagline' => 'Never standing still, always evolving',
     'description' => 'PT. FUJI SEAT INDONESIA is a foreign company producing car-seats for PT. ASTRA DAIHATSU MOTOR (ADM) and PT. TOYOTA MOTOR MANUFACTURING INDONESIA (TMMIN) as a leading automotive company in Indonesia, with a production capacity of more than 2000 seats per day and employing about 2000 workers (2022).',
     'slides' => [
-        ['title' => 'HEAD OFFICE - SUNTER PLANT', 'image' => 'hero-sunter.jpg'],
-        ['title' => 'KARAWANG - KIIC PLANT', 'image' => 'hero-kiic.jpg'],
-        ['title' => 'KARAWANG - SURYACIPTA PLANT 1', 'image' => 'hero-suryacipta-1.jpg'],
-        ['title' => 'KARAWANG - SURYACIPTA PLANT 2', 'image' => 'hero-suryacipta-2.jpg'],
+        ['title' => 'HEAD OFFICE - SUNTER PLANT', 'image' => 'hero-sunter.jpg', 'width' => 1400, 'height' => 827],
+        ['title' => 'KARAWANG - KIIC PLANT', 'image' => 'hero-kiic.jpg', 'width' => 1400, 'height' => 827],
+        ['title' => 'KARAWANG - SURYACIPTA PLANT 1', 'image' => 'plant-exterior.jpg', 'width' => 1862, 'height' => 806],
+        ['title' => 'KARAWANG - SURYACIPTA PLANT 2', 'image' => 'plant-suryacipta-2.jpg', 'width' => 1897, 'height' => 930],
     ],
     'products' => [
         ['name' => 'Xenia', 'detail' => 'November 2005, XENIA & AVANZA Start Mass Production', 'image' => 'product-1.jpg'],
@@ -29,6 +29,17 @@ return [
         ['year' => '2013', 'events' => ['December, AYLA AGYA Start Mass Production']],
         ['year' => '2016', 'events' => ['July, SIGRA CALYA Start Mass Production']],
     ],
+    'processes' => [
+        ['name' => 'Stamping', 'detail' => 'Forming metal parts with dedicated press equipment.', 'image' => 'process-stamping.jpg', 'alt' => 'Large metal stamping presses at the Fuji Seat production facility', 'width' => 2012, 'height' => 980],
+        ['name' => 'Welding', 'detail' => 'Joining metal components with robotic welding equipment.', 'image' => 'process-welding.jpg', 'alt' => 'Robotic welding equipment joining metal parts', 'width' => 1027, 'height' => 803],
+        ['name' => 'Assembly', 'detail' => 'Bringing seat components together on the production line.', 'image' => 'process-assembly.jpg', 'alt' => 'Fuji Seat employees assembling automotive seats', 'width' => 2045, 'height' => 1268],
+    ],
+    'components' => [
+        ['name' => 'Metal components', 'detail' => 'Formed brackets and structural metal parts.', 'image' => 'components-metal.jpg', 'alt' => 'A selection of stamped metal brackets and structural parts', 'width' => 1447, 'height' => 981],
+        ['name' => 'Interior components', 'detail' => 'Moulded covers and interior trim parts.', 'image' => 'components-interior.jpg', 'alt' => 'Black moulded plastic covers and automotive interior trim', 'width' => 986, 'height' => 460],
+        ['name' => 'Seat cushioning', 'detail' => 'Shaped foam for automotive seating.', 'image' => 'components-foam.jpg', 'alt' => 'Shaped foam cushioning for an automotive seat', 'width' => 1129, 'height' => 839],
+        ['name' => 'Seat frames', 'detail' => 'Metal frames that support the seat structure.', 'image' => 'components-frame.jpg', 'alt' => 'An automotive seat frame with metal springs', 'width' => 491, 'height' => 805],
+    ],
     'quality_policy' => [
         'Menghasilkan produk bermutu tinggi sesuai persyaratan pelanggan dan Peraturan Pemerintah yang terkait.',
         'Meningkatkan kepedulian seluruh pekerja terhadap kebijakan mutu dan mengkomunikasikan ke pihak berkepentingan.',
@@ -45,9 +56,9 @@ return [
         'Melakukan upaya perbaikan secara berkesinambungan dalam rangka peningkatan kinerja Sistem Manajemen Lingkungan.',
     ],
     'offices' => [
-        ['name' => 'HEAD OFFICE & SUNTER PLANT', 'address' => 'Jl. Agung Perkasa IX Blok K1 No. 9-15 Sunter Podomoro Jakarta Utara 14230 Indonesia', 'telephone' => '(62-21) 6530-2228', 'map' => 'https://goo.gl/maps/gSQMKziQxssdGJP36'],
-        ['name' => 'Karawang KIIC Plant', 'address' => 'Jl. Maligi VIII Lot S-6, Kawasan Industri KIIC, Teluk Jambe, Karawang, Jawa Barat 41361 Indonesia', 'telephone' => '(62-267) 8631760', 'map' => 'https://goo.gl/maps/o5YMF8VBqfUPiQ9cA'],
-        ['name' => 'Karawang Suryacipta 1 Plant', 'address' => 'Jl. Surya Madya Kav 1-30, Kawasan Industri Suryacipta, Ciampel, Karawang, Jawa Barat 41363 Indonesia', 'telephone' => '(62-267) 8404007', 'map' => 'https://goo.gl/maps/n7hrL1BAQHGLu2Cb7'],
-        ['name' => 'Karawang Suryacipta 2 Plant', 'address' => 'Jl. Surya Pratama Kav 1-63, Kawasan Industri Suryacipta, Ciampel, Karawang, Jawa Barat 41363 Indonesia', 'telephone' => '(62-267) 8404118', 'map' => 'https://goo.gl/maps/ry1GD7MzZcKkZyHH9'],
+        ['name' => 'HEAD OFFICE & SUNTER PLANT', 'image' => 'hero-sunter.jpg', 'width' => 1400, 'height' => 827, 'address' => 'Jl. Agung Perkasa IX Blok K1 No. 9-15 Sunter Podomoro Jakarta Utara 14230 Indonesia', 'telephone' => '(62-21) 6530-2228', 'map' => 'https://goo.gl/maps/gSQMKziQxssdGJP36'],
+        ['name' => 'Karawang KIIC Plant', 'image' => 'hero-kiic.jpg', 'width' => 1400, 'height' => 827, 'address' => 'Jl. Maligi VIII Lot S-6, Kawasan Industri KIIC, Teluk Jambe, Karawang, Jawa Barat 41361 Indonesia', 'telephone' => '(62-267) 8631760', 'map' => 'https://goo.gl/maps/o5YMF8VBqfUPiQ9cA'],
+        ['name' => 'Karawang Suryacipta 1 Plant', 'image' => 'plant-exterior.jpg', 'width' => 1862, 'height' => 806, 'address' => 'Jl. Surya Madya Kav 1-30, Kawasan Industri Suryacipta, Ciampel, Karawang, Jawa Barat 41363 Indonesia', 'telephone' => '(62-267) 8404007', 'map' => 'https://goo.gl/maps/n7hrL1BAQHGLu2Cb7'],
+        ['name' => 'Karawang Suryacipta 2 Plant', 'image' => 'plant-suryacipta-2.jpg', 'width' => 1897, 'height' => 930, 'address' => 'Jl. Surya Pratama Kav 1-63, Kawasan Industri Suryacipta, Ciampel, Karawang, Jawa Barat 41363 Indonesia', 'telephone' => '(62-267) 8404118', 'map' => 'https://goo.gl/maps/ry1GD7MzZcKkZyHH9'],
     ],
 ];

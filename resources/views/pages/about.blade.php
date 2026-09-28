@@ -1,26 +1,50 @@
 @extends('layouts.site')
 
 @section('title', 'About Us')
+@section('body-class', 'about-page')
 
 @section('content')
-    <section class="about-hero">
+    <section class="about-banner" aria-labelledby="about-heading">
+        <img class="about-banner-image" src="{{ asset('assets/images/plant-exterior.jpg') }}" alt="Fuji Seat Indonesia Suryacipta 1 manufacturing facility in Karawang" width="1862" height="806" fetchpriority="high">
+        <div class="container about-banner-inner">
+            <nav class="about-breadcrumb" aria-label="Breadcrumb"><a href="{{ route('home') }}">Home</a><span aria-hidden="true">/</span><span aria-current="page">About Us</span></nav>
+            <div class="about-banner-copy">
+                <span class="about-eyebrow">PEOPLE. PRECISION. PROGRESS.</span>
+                <h1 id="about-heading">Get to know<br>Fuji Seat Indonesia.</h1>
+                <p>From our people to our production floor, discover the company behind every seat.</p>
+                <div class="about-banner-actions">
+                    <a class="button button-white" href="{{ route('products') }}">View Products <span aria-hidden="true">→</span></a>
+                    <a class="button button-secondary" href="{{ route('contact') }}">Contact Us <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+            <a class="about-explore" href="#company-profile"><span class="about-explore-icon" aria-hidden="true">↓</span>Explore our company</a>
+            <span class="about-banner-caption">KARAWANG · SURYACIPTA 1 PLANT</span>
+        </div>
+    </section>
+    <nav class="about-section-nav" aria-label="About us sections">
         <div class="container">
-            <nav class="page-breadcrumb" aria-label="Breadcrumb"><a href="{{ route('home') }}">Home</a><span aria-hidden="true">/</span><span aria-current="page">About Us</span></nav>
+            <a href="#company-profile">Company Profile</a>
+            <a href="#philosophy">Philosophy</a>
+            <a href="#basic-policy">Basic Policy</a>
+            <a href="#manufacturing">Manufacturing</a>
+            <a href="#company-history">Our History</a>
+            <a href="#quality-environment">Quality &amp; Environment</a>
+        </div>
+    </nav>
+    <section class="about-profile" id="company-profile" aria-labelledby="profile-heading">
+        <div class="container">
             <div class="about-grid">
                 <div class="about-introduction">
-                    <span class="section-kicker">{{ config('site.company') }}</span>
-                    <h1>About Us</h1>
+                    <span class="section-kicker">COMPANY PROFILE</span>
+                    <h2 id="profile-heading">Crafting comfort.<br>Moving forward.</h2>
                     <p>{{ config('site.description') }}</p>
-                    <nav class="section-navigation" aria-label="About us sections">
-                        <a href="#basic-policy">Basic Policy <span aria-hidden="true">↗</span></a>
-                        <a href="#company-history">Company History <span aria-hidden="true">↗</span></a>
-                    </nav>
+                    <a class="button button-profile-download" href="{{ asset('assets/company-profile-fuji-seat-indonesia.pdf') }}" download><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5"/></svg><span>Download Company Profile<small>PDF · 12.1 MB</small></span></a>
                 </div>
-                <figure class="about-image"><img src="{{ asset('assets/images/about.jpg') }}" alt="Compass on a world map" width="1400" height="900"></figure>
+                <figure class="about-image"><img src="{{ asset('assets/images/production-assembly.jpg') }}" alt="Fuji Seat Indonesia employees assembling automotive seats" width="1934" height="970" loading="lazy"><figcaption>Our people. The care behind every seat.</figcaption></figure>
             </div>
         </div>
     </section>
-    <section class="philosophy-section">
+    <section class="philosophy-section" id="philosophy">
         <div class="container philosophy-grid">
             <h2>Philosophy</h2>
             <p>As a member of the Daihatsu Group, PT. FUJI SEAT INDONESIA strives to earn the admiration of people worldwide through the development and manufacture of seats and interior accessories for innovative vehicles.</p>
@@ -30,13 +54,29 @@
         <div class="container">
             <div class="detail-section-heading"><span class="section-index" aria-hidden="true">01</span><h2>Basic Policy</h2></div>
             <div class="policy-grid">
-                <figure class="policy-image"><img src="{{ asset('assets/images/hero-kiic.jpg') }}" alt="Fuji Seat Indonesia Karawang plant" width="1400" height="827" loading="lazy"></figure>
+                <figure class="policy-image"><img src="{{ asset('assets/images/production-team.jpg') }}" alt="Fuji Seat Indonesia employees working on seat upholstery" width="1889" height="1223" loading="lazy"></figure>
                 <div class="policy-cards">
                     <article><span class="policy-number" aria-hidden="true">01</span><h3>Satisfy Customer</h3><p>We strive to satisfy customer who love their Daihatsu vehicles.</p></article>
                     <article><span class="policy-number" aria-hidden="true">02</span><h3>Our Business</h3><p>We structure our business around activities conceived to earn consumer trust.</p></article>
                     <article><span class="policy-number" aria-hidden="true">03</span><h3>Committed</h3><p>Earth and every employee at PT. Fuji Seat Indonesia is committed to deepening understanding and building love and respect.</p></article>
                     <article><span class="policy-number" aria-hidden="true">04</span><h3>Leader</h3><p>The concept of leading by example and achieving breakthrough progress comprise the foundation all we do.</p></article>
                 </div>
+            </div>
+        </div>
+    </section>
+    <section class="manufacturing-section" id="manufacturing" aria-labelledby="manufacturing-heading">
+        <div class="container">
+            <div class="section-heading">
+                <div><span class="section-kicker">OUR CAPABILITIES</span><h2 id="manufacturing-heading">A closer look at production.</h2></div>
+                <p class="section-description">From metal forming to seat assembly, see the people and equipment behind our products.</p>
+            </div>
+            <div class="process-grid">
+                @foreach (config('site.processes') as $process)
+                    <figure class="process-card">
+                        <div class="process-image"><img src="{{ asset('assets/images/'.$process['image']) }}" alt="{{ $process['alt'] }}" width="{{ $process['width'] }}" height="{{ $process['height'] }}" loading="lazy" decoding="async"></div>
+                        <figcaption><span class="section-index">0{{ $loop->iteration }}</span><h3>{{ $process['name'] }}</h3><p>{{ $process['detail'] }}</p></figcaption>
+                    </figure>
+                @endforeach
             </div>
         </div>
     </section>
@@ -57,7 +97,7 @@
             </div>
         </div>
     </section>
-    <section class="standards-section">
+    <section class="standards-section" id="quality-environment">
         <div class="container standards-grid">
             <article class="standard-card">
                 <div class="standard-heading">
@@ -81,6 +121,12 @@
                     @endforeach
                 </ol>
             </article>
+        </div>
+    </section>
+    <section class="about-connect" aria-labelledby="connect-heading">
+        <div class="container about-connect-inner">
+            <div><span class="section-kicker">LET’S CONNECT</span><h2 id="connect-heading">Start a conversation with us.</h2><p>Find our offices, explore our products, or discover opportunities to join our team.</p></div>
+            <div class="about-connect-actions"><a class="button button-primary" href="{{ route('contact') }}">Contact Us <span aria-hidden="true">→</span></a><a class="text-link" href="{{ route('career') }}">Explore Careers <span aria-hidden="true">↗</span></a></div>
         </div>
     </section>
 @endsection

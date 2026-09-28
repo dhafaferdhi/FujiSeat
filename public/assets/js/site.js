@@ -1,15 +1,23 @@
 const menuButton = document.querySelector('.nav-toggle');
 const mainNav = document.querySelector('.main-nav');
+const aboutMenu = document.querySelector('[data-about-menu]');
 
 if (menuButton && mainNav) {
     const closeMenu = () => {
         menuButton.setAttribute('aria-expanded', 'false');
         menuButton.setAttribute('aria-label', 'Open navigation');
         mainNav.classList.remove('is-open');
+        if (aboutMenu) {
+            aboutMenu.open = false;
+        }
     };
 
     menuButton.addEventListener('click', () => {
         const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+        if (isOpen) {
+            closeMenu();
+            return;
+        }
         menuButton.setAttribute('aria-expanded', String(!isOpen));
         menuButton.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
         mainNav.classList.toggle('is-open', !isOpen);
@@ -23,8 +31,47 @@ if (menuButton && mainNav) {
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
+            if (aboutMenu?.open) {
+                aboutMenu.open = false;
+                aboutMenu.querySelector('summary').focus();
+                return;
+            }
+            const wasOpen = mainNav.classList.contains('is-open');
+            closeMenu();
+            if (wasOpen) {
+                menuButton.focus();
+            }
+        }
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!mainNav.contains(event.target) && !menuButton.contains(event.target)) {
             closeMenu();
         }
+    });
+
+    window.matchMedia('(max-width: 850px)').addEventListener('change', closeMenu);
+}
+
+if (aboutMenu) {
+    aboutMenu.addEventListener('pointerenter', (event) => {
+        if (event.pointerType === 'mouse' && window.matchMedia('(min-width: 851px) and (hover: hover)').matches) {
+            aboutMenu.open = true;
+        }
+    });
+
+    aboutMenu.addEventListener('pointerleave', () => {
+        if (!aboutMenu.contains(document.activeElement) && window.matchMedia('(min-width: 851px)').matches) {
+            aboutMenu.open = false;
+        }
+    });
+
+    aboutMenu.addEventListener('focusout', () => {
+        requestAnimationFrame(() => {
+            if (!aboutMenu.contains(document.activeElement)) {
+                aboutMenu.open = false;
+            }
+        });
     });
 }
 

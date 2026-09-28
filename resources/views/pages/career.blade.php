@@ -12,7 +12,10 @@
     </section>
     <section class="career-section">
         <div class="container career-grid">
-            <figure class="career-image"><img src="{{ asset('assets/images/career.jpg') }}" alt="Handshake" width="690" height="460"></figure>
+            <div class="career-photography">
+                <figure class="career-image"><img src="{{ asset('assets/images/production-team.jpg') }}" alt="Fuji Seat Indonesia team working together on the production floor" width="1889" height="1223"><figcaption>Working together, creating quality.</figcaption></figure>
+                <figure class="career-detail-image"><img src="{{ asset('assets/images/team-upholstery.jpg') }}" alt="A Fuji Seat employee preparing automotive seat upholstery" width="676" height="519" loading="lazy"></figure>
+            </div>
             <div class="career-content">
                 <span class="section-index" aria-hidden="true">01</span>
                 <h2>Join Our Team!</h2>

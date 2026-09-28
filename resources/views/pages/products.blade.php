@@ -12,6 +12,16 @@
             </div>
         </div>
     </section>
+    <section class="product-intro" aria-labelledby="product-intro-heading">
+        <div class="container product-intro-grid">
+            <div class="product-intro-content">
+                <span class="section-kicker">COMFORT IN EVERY DETAIL</span>
+                <h2 id="product-intro-heading">Seating for the journey ahead.</h2>
+                <p>Explore the automotive seats we produce for a range of vehicle models.</p>
+            </div>
+            <figure class="product-intro-image"><img src="{{ asset('assets/images/seat-interior.jpg') }}" alt="Automotive seats installed inside a vehicle" width="741" height="359"></figure>
+        </div>
+    </section>
     <section class="product-gallery-section" data-product-gallery aria-label="Product gallery">
         <div class="container product-showcase">
             <div class="product-visual">
@@ -53,6 +63,25 @@
                             <p>{{ $product['detail'] }}</p>
                         </div>
                     </article>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <section class="components-section" aria-labelledby="components-heading">
+        <div class="container">
+            <div class="section-heading">
+                <div><span class="section-kicker">BEYOND THE FINISHED SEAT</span><h2 id="components-heading">Every component matters.</h2></div>
+                <p class="section-description">Explore the metal parts, interior components, cushioning, and frames featured in our product range.</p>
+            </div>
+            <div class="components-grid">
+                @foreach (config('site.components') as $component)
+                    <figure class="component-card">
+                        <a class="component-image" href="{{ asset('assets/images/'.$component['image']) }}" target="_blank" rel="noopener noreferrer" aria-label="View full image of {{ $component['name'] }} (opens in a new tab)">
+                            <img src="{{ asset('assets/images/'.$component['image']) }}" alt="{{ $component['alt'] }}" width="{{ $component['width'] }}" height="{{ $component['height'] }}" loading="lazy" decoding="async">
+                            <span class="image-expand" aria-hidden="true">↗</span>
+                        </a>
+                        <figcaption><span class="section-index">0{{ $loop->iteration }}</span><h3>{{ $component['name'] }}</h3><p>{{ $component['detail'] }}</p></figcaption>
+                    </figure>
                 @endforeach
             </div>
         </div>
