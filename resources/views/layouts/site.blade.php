@@ -21,19 +21,7 @@
             </button>
             <nav class="main-nav" id="main-nav" aria-label="Main navigation">
                 <a class="{{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
-                <details class="nav-dropdown" data-about-menu>
-                    <summary class="{{ request()->routeIs('about') ? 'active' : '' }}">About us <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></summary>
-                    <div class="about-menu">
-                        <p>About Fuji Seat</p>
-                        <a href="{{ route('about') }}#company-profile">Company Profile <span aria-hidden="true">↗</span></a>
-                        <a href="{{ route('about') }}#philosophy">Our Philosophy <span aria-hidden="true">↗</span></a>
-                        <a href="{{ route('about') }}#basic-policy">Basic Policy <span aria-hidden="true">↗</span></a>
-                        <a href="{{ route('about') }}#manufacturing">Manufacturing <span aria-hidden="true">↗</span></a>
-                        <a href="{{ route('about') }}#company-history">Company History <span aria-hidden="true">↗</span></a>
-                        <a href="{{ route('about') }}#quality-environment">Quality &amp; Environment <span aria-hidden="true">↗</span></a>
-                        <a class="about-menu-contact" href="{{ route('contact') }}">Contact Us <span aria-hidden="true">→</span></a>
-                    </div>
-                </details>
+                <a class="{{ request()->routeIs('about*') ? 'active' : '' }}" href="{{ route('about') }}">About Us</a>
                 <a class="{{ request()->routeIs('products') ? 'active' : '' }}" href="{{ route('products') }}">Products</a>
                 <a class="{{ request()->routeIs('career') ? 'active' : '' }}" href="{{ route('career') }}">Career</a>
                 <a class="{{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact us</a>
